@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/">
+  <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
   <title>To-Do App</title>
@@ -19,27 +19,11 @@
     </header>
     <main>
       <section class="scn-input">
-        <input type="text" name="new-task" id="new-task">
-        <button type="button">+</button>
+        <input type="text" name="inp-new-task" id="inp-new-task">
+        <button type="button" class="btn-new-task">+</button>
       </section>
       <section class="scn-listing">
-        <ul>
-          <li>
-            <input type="checkbox" name="item1" id="item1">
-            <label for="item1">Item 1</label>
-            <button type="button">-</button>
-          </li>
-          <li>
-            <input type="checkbox" name="item1" id="item1">
-            <label for="item1">Item 2</label>
-            <button type="button">-</button>
-          </li>
-          <li>
-            <input type="checkbox" name="item1" id="item1">
-            <label for="item1">Item 3</label>
-            <button type="button">-</button>
-          </li>
-        </ul>
+        <ul></ul>
       </section>
     </main>
   </div>
