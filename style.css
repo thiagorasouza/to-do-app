@@ -1,0 +1,74 @@
+html {
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  /* margin: 0; */
+  /* padding: 0; */
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+  margin: 0;
+  padding: 0;
+  /* background-color: gray; */
+}
+
+.to-do-app {
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+  background-color: rgb(231, 166, 210);
+}
+
+.hd-title {
+  text-align: center;
+}
+
+.hd-title h1 {
+  font-size: 2.5em;
+}
+
+.scn-input {
+  display: flex;
+}
+
+.scn-input > input {
+  flex: 1 1 auto;
+}
+
+.scn-listing ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0.5em 0;
+  padding-left: 0;
+}
+
+.scn-listing ul li {
+  display: flex;
+  align-items: center;
+  margin: 0.25em 0;
+  padding: 0.25em 0;
+  background-color: rgb(163, 153, 245);
+}
+
+.scn-listing ul li > button {
+  margin-left: auto;
+}
+
+footer {
+  align-self: stretch;
+  text-align: center;
+  margin-top: auto;
+  background-color: rgb(203, 235, 152);
+}
