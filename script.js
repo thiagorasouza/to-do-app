@@ -31,9 +31,9 @@ function insertTask(desc) {
       <button type="button" class="btn-del-task">D</button>
   `;
 
-  task.querySelector('input[type="checkbox"]').addEventListener('change', () => toggleTask(task));
+  task.querySelector('input[type="checkbox"]').addEventListener('change', () => toggleCompletion(task));
   task.querySelector('.btn-del-task').addEventListener('click', () => deleteTask(task));
-  task.querySelector('.btn-edit-task').addEventListener('click', () => toggleEditInput(task));
+  task.querySelector('.btn-edit-task').addEventListener('click', () => toggleEdition(task));
   task.querySelector('input[type="text"]').addEventListener('keyup', event => {
     if (event.key === 'Enter') {
       editTask(task, event.target.value);
@@ -43,15 +43,15 @@ function insertTask(desc) {
   taskList.appendChild(task);
 }
 
-function toggleTask(task) {
-  task.classList.toggle('complete');
+function toggleCompletion(task) {
+  task.querySelector('label').classList.toggle('complete');
 }
 
 function deleteTask(task) {
   task.remove();
 }
 
-function toggleEditInput(task) {
+function toggleEdition(task) {
   let label = task.querySelector('label');
   let input = task.querySelector('input[type="text"]');
   
