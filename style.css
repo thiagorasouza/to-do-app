@@ -62,8 +62,12 @@ body {
   background-color: rgb(163, 153, 245);
 }
 
-.scn-listing ul li > button {
+.scn-listing ul li > .btn-edit-task {
   margin-left: auto;
+}
+
+.scn-listing ul li > input[type="text"] {
+  flex-grow: 1;
 }
 
 .complete {
