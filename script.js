@@ -29,5 +29,11 @@ function insertTask(desc) {
       <button type="button">-</button>
   `;
 
+  task.querySelector('input[type="checkbox"]').addEventListener('change', toggleTask);
+
   taskList.appendChild(task);
+}
+
+function toggleTask(e) {
+    e.target.parentElement.classList.toggle('complete');
 }

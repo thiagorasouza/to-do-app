@@ -66,6 +66,10 @@ body {
   margin-left: auto;
 }
 
+.complete {
+  text-decoration: line-through;
+}
+
 footer {
   align-self: stretch;
   text-align: center;
