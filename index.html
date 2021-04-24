@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/">
+  <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
   <title>To-Do App</title>
@@ -21,6 +21,23 @@
       <section class="scn-input">
         <input type="text" name="inp-new-task" id="inp-new-task" value="Task X">
         <button type="button" class="btn-new-task">+</button>
+      </section>
+      <section class="scn-selectors">
+        <div>
+          Filters:
+        </div>
+        <div>
+          <input type="radio" name="filter" id="filter-all" value="all" checked>
+          <label for="filter-all">All</label>
+        </div>
+        <div>
+          <input type="radio" name="filter" id="filter-complete" value="complete">
+          <label for="filter-complete">Complete</label>
+        </div>
+        <div>
+          <input type="radio" name="filter" id="filter-active" value="active">
+          <label for="filter-active">Active</label>
+        </div>
       </section>
       <section class="scn-listing">
         <ul></ul>

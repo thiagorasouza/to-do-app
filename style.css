@@ -30,6 +30,16 @@ body {
   background-color: rgb(231, 166, 210);
 }
 
+.to-do-app input[type="text"] {
+  font-size: inherit;
+}
+
+.to-do-app label,
+.to-do-app input[type="checkbox"],
+.to-do-app input[type="radio"] {
+  cursor: pointer;
+}
+
 .hd-title {
   text-align: center;
 }
@@ -44,6 +54,23 @@ body {
 
 .scn-input > input {
   flex: 1 1 auto;
+}
+
+.scn-selectors {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  margin-top: 1em;
+  /* background-color: gray; */
+}
+
+.scn-selectors > * {
+  margin-right: 1em;
+  cursor: pointer;
+}
+
+.scn-selectors:last-child {
+  margin-right: 0;
 }
 
 .scn-listing ul {
@@ -66,12 +93,17 @@ body {
   margin-left: auto;
 }
 
+.scn-listing ul li > label,
 .scn-listing ul li > input[type="text"] {
   flex-grow: 1;
 }
 
 .complete {
   text-decoration: line-through;
+}
+
+.hidden {
+  display: none !important;
 }
 
 footer {
