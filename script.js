@@ -14,6 +14,7 @@ newTaskInput.addEventListener('keyup', event => {
 const newTaskBtn = document.querySelector('.btn-new-task');
 newTaskBtn.addEventListener('click', () => insertTask(newTaskInput.value));
 
+
 const filterRadios = document.querySelectorAll('.scn-selectors input[type="radio"]');
 filterRadios.forEach(radio => {
   radio.addEventListener('change', event => {
@@ -31,10 +32,20 @@ function insertTask(name) {
   let taskNum = getLastNum() + 1;
   task.dataset.id = taskNum;
 
+  let dateObj = new Date();
+  let date = dateObj.toLocaleDateString();
+  let time = dateObj.toLocaleTimeString();
+  console.log(date);
+  // todo date
+
   task.innerHTML = `
       <input type="checkbox" name="box-task-${taskNum}" id="box-task-${taskNum}">
-      <label for="box-task-${taskNum}">${name}</label>
+      <div class="task-info">
+        <label title="Created on ${date} at ${time}" for="box-task-${taskNum}">${name}</label>
+        <time datetime="${dateObj.toISOString()}" class="hidden">Created on ${date} at ${time}</time>
+      </div>
       <input type="text" name="inp-task-${taskNum}" value="${name}" class="hidden">
+      <button type="button" class="btn-info-task">&nbsp;I&nbsp;</button>
       <button type="button" class="btn-edit-task">E</button>
       <button type="button" class="btn-del-task">D</button>
   `;
@@ -50,9 +61,10 @@ function insertTask(name) {
       editTask(task, event.target.value);
     }
   });
+  task.querySelector('.btn-info-task').addEventListener('click', () => toggleDateInfo(task));
 
   newTaskInput.value = '';
-  
+
   taskList.appendChild(task);
 
   if (getCurrentFilter() === 'complete') {
@@ -70,23 +82,30 @@ function deleteTask(task) {
 }
 
 function toggleEdition(task) {
-  let label = task.querySelector('label');
+  let info = task.querySelector('.task-info');
   let input = task.querySelector('input[type="text"]');
   
-  toggleElement(label);
+  toggleElement(info);
   toggleElement(input);
 }
 
 function editTask(task, name) {
+  let info = task.querySelector('.task-info');
   let label = task.querySelector('label');
   let input = task.querySelector('input[type="text"]');
 
   label.textContent = name;
 
-  toggleElement(label);
+  toggleElement(info);
   toggleElement(input);
 
   input.value = name;
+}
+
+function toggleDateInfo(task) {
+  let time = task.querySelector('time');
+
+  toggleElement(time);
 }
 
 function filterTasks(filterName) {

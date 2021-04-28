@@ -89,13 +89,22 @@ body {
   background-color: rgb(163, 153, 245);
 }
 
-.scn-listing ul li > .btn-edit-task {
+.scn-listing ul li .btn-edit-task {
   margin-left: auto;
 }
 
-.scn-listing ul li > label,
-.scn-listing ul li > input[type="text"] {
+.scn-listing ul li input[type="text"] {
   flex-grow: 1;
+}
+
+.scn-listing ul li .task-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.scn-listing ul li time {
+  font-size: 0.75em;
 }
 
 .complete {

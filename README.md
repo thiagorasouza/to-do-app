@@ -14,7 +14,7 @@ The classic To-Do application where a user can write down all the things he want
 -   [x] User can edit a to-do
 -   [x] User can see a list with all the completed to-do's
 -   [x] User can see a list with all the active to-do's
--   [ ] User can see the date when he created the to-do
+-   [x] User can see the date when he created the to-do
 -   [ ] When closing the browser window the to-do's will be stored and when the User returns, the data will be retrieved
 
 ## Credits
