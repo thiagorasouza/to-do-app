@@ -7,13 +7,12 @@ const taskList = document.querySelector('.scn-listing ul');
 const newTaskInput = document.getElementById('inp-new-task');
 newTaskInput.addEventListener('keyup', event => {
   if (event.key === 'Enter') {
-    insertTask(event.target.value);
+    newTask(event.target.value);
   }
 });
 
 const newTaskBtn = document.querySelector('.btn-new-task');
-newTaskBtn.addEventListener('click', () => insertTask(newTaskInput.value));
-
+newTaskBtn.addEventListener('click', () => newTask(newTaskInput.value));
 
 const filterRadios = document.querySelectorAll('.scn-selectors input[type="radio"]');
 filterRadios.forEach(radio => {
@@ -26,46 +25,14 @@ filterRadios.forEach(radio => {
 // USER ACTIONS
 // ============
 
-function insertTask(name) {
-  const task = document.createElement('li');
+function newTask(name) {
+  let id = getLastId() + 1;
+  let datetime = isoDateNow();
 
-  let taskNum = getLastNum() + 1;
-  task.dataset.id = taskNum;
-
-  let dateObj = new Date();
-  let date = dateObj.toLocaleDateString();
-  let time = dateObj.toLocaleTimeString();
-  console.log(date);
-  // todo date
-
-  task.innerHTML = `
-      <input type="checkbox" name="box-task-${taskNum}" id="box-task-${taskNum}">
-      <div class="task-info">
-        <label title="Created on ${date} at ${time}" for="box-task-${taskNum}">${name}</label>
-        <time datetime="${dateObj.toISOString()}" class="hidden">Created on ${date} at ${time}</time>
-      </div>
-      <input type="text" name="inp-task-${taskNum}" value="${name}" class="hidden">
-      <button type="button" class="btn-info-task">&nbsp;I&nbsp;</button>
-      <button type="button" class="btn-edit-task">E</button>
-      <button type="button" class="btn-del-task">D</button>
-  `;
-
-  task.querySelector('input[type="checkbox"]').addEventListener('change', () => {
-    toggleCompletion(task);
-    refreshFilter();
-  });
-  task.querySelector('.btn-del-task').addEventListener('click', () => deleteTask(task));
-  task.querySelector('.btn-edit-task').addEventListener('click', () => toggleEdition(task));
-  task.querySelector('input[type="text"]').addEventListener('keyup', event => {
-    if (event.key === 'Enter') {
-      editTask(task, event.target.value);
-    }
-  });
-  task.querySelector('.btn-info-task').addEventListener('click', () => toggleDateInfo(task));
+  insertTask(id, name, datetime, false);
+  saveTask(id, name, datetime, false);
 
   newTaskInput.value = '';
-
-  taskList.appendChild(task);
 
   if (getCurrentFilter() === 'complete') {
     document.getElementById('filter-all').checked = true;
@@ -73,12 +40,93 @@ function insertTask(name) {
   }  
 }
 
-function toggleCompletion(task) {
-  task.querySelector('label').classList.toggle('complete');
+function insertTask(id, name, datetime, complete) {
+  const task = document.createElement('li');
+
+  task.dataset.id = id;
+  let dateObj = new Date(Date.parse(datetime));
+  let date = dateObj.toLocaleDateString();
+  let time = dateObj.toLocaleTimeString();
+
+  // console.log(name, complete);
+
+  task.innerHTML = `
+      <input type="checkbox" name="box-task-${id}" id="box-task-${id}" ${complete && 'checked'}>
+      <div class="task-info">
+        <label for="box-task-${id}" class="${complete && 'complete'}">${name}</label>
+        <time datetime="${datetime}" class="hidden">Created on ${date} at ${time}</time>
+      </div>
+      <input type="text" name="inp-task-${id}" value="${name}" class="hidden">
+      <button type="button" class="btn-info-task">I</button>
+      <button type="button" class="btn-edit-task">E</button>
+      <button type="button" class="btn-del-task">D</button>
+  `;
+
+  task.querySelector('input[type="checkbox"]').addEventListener('change', (event) => {
+    let complete = event.target.checked;
+    toggleCompletion(task, complete);
+    saveTask(id, name, datetime, complete);
+    refreshFilter();
+  });
+  task.querySelector('.btn-del-task').addEventListener('click', () => deleteTask(task, id));
+  task.querySelector('.btn-edit-task').addEventListener('click', () => toggleEdition(task));
+  task.querySelector('input[type="text"]').addEventListener('keyup', event => {
+    if (event.key === 'Enter') {
+      let newName = event.target.value;
+      editTask(task, newName);
+      saveTask(id, newName, datetime);
+    }
+  });
+  task.querySelector('.btn-info-task').addEventListener('click', () => toggleDateInfo(task));
+
+  taskList.appendChild(task);
 }
 
-function deleteTask(task) {
+function getStoredTasks() {
+  return jsonParse(localStorage.getItem('tasks'));
+}
+
+function storeTasks(tasks) {
+  return localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function loadStoredTasks() {
+  let storedTasks = getStoredTasks();
+  // console.log(storedTasks);
+
+  for (id in storedTasks) {
+    const {name, datetime, complete} = storedTasks[id];
+    insertTask(id, name, datetime, complete);
+  }  
+}
+
+function saveTask(id, name, datetime, complete = null) {
+  let storedTasks = getStoredTasks();  
+  let currentTask = {
+    [id]: {
+      name,
+      datetime,
+      complete: complete ?? storedTasks[id].complete
+    }
+  };
+
+  storeTasks(Object.assign(storedTasks, currentTask));  
+}
+
+function toggleCompletion(task, complete) {
+  if (complete) {
+    task.querySelector('label').classList.add('complete');
+  } else {
+    task.querySelector('label').classList.remove('complete');
+  }
+}
+
+function deleteTask(task, id) {
   task.remove();
+
+  let tasks = getStoredTasks();
+  delete tasks[id];
+  storeTasks(tasks);
 }
 
 function toggleEdition(task) {
@@ -142,7 +190,7 @@ function refreshFilter() {
 // HELPER FUNCTIONS
 // ================
 
-function getLastNum() {
+function getLastId() {
   let lastChild = taskList.lastElementChild;
   return lastChild ? Number(lastChild.dataset.id) : 0;
 }
@@ -159,10 +207,24 @@ function showElement(element) {
   element.classList.remove('hidden');
 }
 
+function jsonParse(str) {
+  try {
+    return JSON.parse(str);
+  } catch {
+    return {};
+  }
+}
+
+
+function isoDateNow() {
+  return (new Date()).toISOString();
+}
+
 // ================
 // INITIALIZATION
 // ================
 
-insertTask('Task 1');
-insertTask('Task 2');
-insertTask('Task 3');
+loadStoredTasks();
+// newTask('Task 1');
+// newTask('Task 2');
+// newTask('Task 3');
