@@ -4,8 +4,6 @@ html {
 }
 
 *, *::before, *::after {
-  /* margin: 0; */
-  /* padding: 0; */
   box-sizing: inherit;
 }
 
@@ -19,100 +17,6 @@ body {
   font-size: 1.6rem;
   margin: 0;
   padding: 0;
-  /* background-color: gray; */
-}
-
-.to-do-app {
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 2em;
-  background-color: rgb(231, 166, 210);
-}
-
-.to-do-app input[type="text"] {
-  font-size: inherit;
-}
-
-.to-do-app label,
-.to-do-app input[type="checkbox"],
-.to-do-app input[type="radio"] {
-  cursor: pointer;
-}
-
-.hd-title {
-  text-align: center;
-}
-
-.hd-title h1 {
-  font-size: 2.5em;
-}
-
-.scn-input {
-  display: flex;
-}
-
-.scn-input > input {
-  flex: 1 1 auto;
-}
-
-.scn-selectors {
-  display: flex;
-  align-items: center;
-  padding: 0.5em 1em;
-  margin-top: 1em;
-  /* background-color: gray; */
-}
-
-.scn-selectors > * {
-  margin-right: 1em;
-  cursor: pointer;
-}
-
-.scn-selectors:last-child {
-  margin-right: 0;
-}
-
-.scn-listing ul {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  margin: 0.5em 0;
-  padding-left: 0;
-}
-
-.scn-listing ul li {
-  display: flex;
-  align-items: center;
-  margin: 0.25em 0;
-  padding: 0.25em 0;
-  background-color: rgb(163, 153, 245);
-}
-
-.scn-listing ul li .btn-edit-task {
-  margin-left: auto;
-}
-
-.scn-listing ul li input[type="text"] {
-  flex-grow: 1;
-}
-
-.scn-listing ul li .task-info {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.scn-listing ul li time {
-  font-size: 0.75em;
-}
-
-.complete {
-  text-decoration: line-through;
-}
-
-.hidden {
-  display: none !important;
 }
 
 footer {
@@ -120,4 +24,119 @@ footer {
   text-align: center;
   margin-top: auto;
   background-color: rgb(203, 235, 152);
+}
+
+input[type="text"] {
+  font-size: inherit;
+}
+
+label, input[type="checkbox"], input[type="radio"] {
+  cursor: pointer;
+}
+
+/* ======== */
+/* WRAPPER  */
+/* ======== */
+
+.wrapper {
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+  background-color: rgb(231, 166, 210);
+}
+
+/* ========== */
+/* PAGE TITLE */
+/* ========== */
+
+.title {
+  text-align: center;
+}
+
+.title h1 {
+  font-size: 2.5em;
+}
+
+/* ============= */
+/* INPUT SECTION */
+/* ============= */
+
+.input {
+  display: flex;
+}
+
+.input > input {
+  flex: 1 1 auto;
+}
+
+/* ================= */
+/* SELECTORS SECTION */
+/* ================= */
+
+.filters {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  margin-top: 1em;
+  /* background-color: gray; */
+}
+
+.filters > * {
+  margin-right: 1em;
+  cursor: pointer;
+}
+
+.filters:last-child {
+  margin-right: 0;
+}
+
+/* =============== */
+/* LISTING SECTION */
+/* =============== */
+
+.listing ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0.5em 0;
+  padding-left: 0;
+}
+
+.listing li {
+  display: flex;
+  align-items: center;
+  margin: 0.25em 0;
+  padding: 0.25em 0;
+  background-color: rgb(163, 153, 245);
+}
+
+.listing input[type="text"] {
+  flex-grow: 1;
+}
+
+.info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-edit-task {
+  margin-left: auto;
+}
+
+.listing time {
+  font-size: 0.75em;
+}
+
+/* ============ */
+/* OTHER STYLES */
+/* ============ */
+
+.complete {
+  text-decoration: line-through;
+}
+
+.hidden {
+  display: none !important;
 }
