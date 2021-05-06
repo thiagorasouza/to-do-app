@@ -16,18 +16,17 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  /* padding: 1em 1em 0; */
   min-height: 100vh;
   font-family: 'Lato', sans-serif;
-  font-weight: 400;
   font-size: 1.8rem;
   background-color: #f1f1f0;
 }
 
 footer {
-  align-self: stretch;
   text-align: center;
+  font-size: 0.75em;
   margin-top: auto;
+  padding: 0.4em 0;
   background-color: #fff;
 }
 
@@ -48,6 +47,10 @@ button {
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.75;
 }
 
 /* ======== */
@@ -73,12 +76,9 @@ button {
 /* PAGE TITLE */
 /* ========== */
 
-.title {
+.title h1 {
   text-align: center;
   color: #111;
-}
-
-.title h1 {
   font-size: 2.5em;
   font-family: 'Permanent Marker', cursive;
 }
@@ -101,27 +101,21 @@ button {
   background-image: url('img/add.png');
 }
 
-.btn-new:hover {
-  opacity: 0.75;
-}
-
-/* ================= */
-/* SELECTORS SECTION */
-/* ================= */
+/* =============== */
+/* FILTERS SECTION */
+/* =============== */
 
 .filters {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 0.5em 1em;
+  padding: 0.5em;
   margin-top: 1em;
-  /* background-color: gray; */
 }
 
 .filters > * {
   margin-right: 0.6em;
-  cursor: pointer;
 }
 
 .filters:last-child {
@@ -133,8 +127,6 @@ button {
 /* =============== */
 
 .listing ul {
-  display: flex;
-  flex-direction: column;
   list-style: none;
   margin: 0.5em 0;
   padding-left: 0;
@@ -145,7 +137,10 @@ button {
   align-items: center;
   margin: 0.25em 0;
   padding: 0.25em 0;
-  /* background-color: rgb(163, 153, 245); */
+}
+
+.listing li:hover {
+  background-color: rgb(243, 243, 243);  
 }
 
 .listing input[type="checkbox"] {
@@ -158,8 +153,11 @@ button {
   flex-direction: column;
 }
 
+.listing time {
+  font-size: 0.75em;
+}
+
 .listing input[type="text"] {
-  /* margin-right: 0.5em; */
   flex-grow: 1;
 }
 
@@ -173,10 +171,6 @@ button {
 .btn-info { background-image: url('img/info.png'); }
 .btn-edit { background-image: url('img/pencil.png'); }
 .btn-del { background-image: url('img/trash.png'); }
-
-.listing time {
-  font-size: 0.75em;
-}
 
 /* ============ */
 /* OTHER STYLES */

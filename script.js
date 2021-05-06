@@ -5,6 +5,7 @@
 const taskList = document.querySelector('.listing ul');
 
 const newTaskInput = document.getElementById('inp-new');
+// Task insertion is triggered when enter key is pressed
 newTaskInput.addEventListener('keyup', event => {
   if (event.key === 'Enter') {
     newTaskHandler(event);
@@ -15,13 +16,14 @@ const newTaskBtn = document.querySelector('.btn-new');
 newTaskBtn.addEventListener('click', newTaskHandler);
 
 function newTaskHandler(event) {
-  let name = event.target.value;
-  console.log('Name:', name);
+  let name = newTaskInput.value;
 
+  // Only inserts non empty tasks
   if (name.trim()) {
     newTask(name);
-    event.target.value = '';
+    newTaskInput.value = '';
 
+    // If only complete tasks are being shown, switches filter to show all tasks
     if (getCurrentFilter() === 'complete') {
       document.getElementById('filter-all').checked = true;
       refreshFiltering();
@@ -48,6 +50,7 @@ function newTask(name) {
   saveTask(id, name, datetime, false);
 }
 
+// Inserts a new task visually
 function insertTask(id, name, datetime, complete) {
   const task = document.createElement('li');
 
@@ -88,6 +91,7 @@ function insertTask(id, name, datetime, complete) {
   taskList.appendChild(task);
 }
 
+// Edits a task visually
 function editTask(task, name) {
   let label = task.querySelector('label');
   let input = task.querySelector('input[type="text"]');
@@ -98,6 +102,7 @@ function editTask(task, name) {
   toggleEdition(task);
 }
 
+// Delete a task both visually and storage-wise
 function deleteTask(task, id) {
   let tasks = getStoredTasks();
   delete tasks[id];
@@ -107,7 +112,7 @@ function deleteTask(task, id) {
 }
 
 function saveTask(id, name, datetime, complete = null) {
-  let storedTasks = getStoredTasks();  
+  let storedTasks = getStoredTasks();
   let currentTask = {
     [id]: {
       name,
@@ -154,7 +159,7 @@ function refreshFiltering() {
 }
 
 // =================
-// VISUAL OPERATIONS
+// TOGGLE OPERATIONS
 // =================
 
 function toggleCompletion(task, complete) {
@@ -182,6 +187,18 @@ function toggleDateInfo(task) {
   toggleElement(time);
 }
 
+function toggleElement(element) {
+  element.classList.toggle('hidden');
+}
+
+function hideElement(element) {
+  element.classList.add('hidden');
+}
+
+function showElement(element) {
+  element.classList.remove('hidden');
+}
+
 // ========================
 // LOCAL STORAGE OPERATIONS
 // ========================
@@ -198,18 +215,6 @@ function storeTasks(tasks) {
 // HELPER FUNCTIONS
 // ================
 
-function toggleElement(element) {
-  element.classList.toggle('hidden');
-}
-
-function hideElement(element) {
-  element.classList.add('hidden');
-}
-
-function showElement(element) {
-  element.classList.remove('hidden');
-}
-
 function getLastId() {
   let lastChild = taskList.lastElementChild;
   return lastChild ? Number(lastChild.dataset.id) : 0;
@@ -217,7 +222,7 @@ function getLastId() {
 
 function jsonParse(str) {
   try {
-    return JSON.parse(str);
+    return JSON.parse(str) || {};
   } catch {
     return {};
   }
