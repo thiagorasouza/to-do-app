@@ -1,29 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Permanent+Marker&display=swap');
+
 html {
   font-size: 10px;
   box-sizing: border-box;
 }
 
 *, *::before, *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: inherit;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  align-items: stretch;
+  /* padding: 1em 1em 0; */
   min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.6rem;
-  margin: 0;
-  padding: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  background-color: #f1f1f0;
 }
 
 footer {
   align-self: stretch;
   text-align: center;
   margin-top: auto;
-  background-color: rgb(203, 235, 152);
+  background-color: #fff;
 }
 
 input[type="text"] {
@@ -34,16 +39,34 @@ label, input[type="checkbox"], input[type="radio"] {
   cursor: pointer;
 }
 
+button {
+  align-self: center;
+  border: none;
+  background: none;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
 /* ======== */
-/* WRAPPER  */
+/* WRAPPERS */
 /* ======== */
 
-.wrapper {
-  min-width: 300px;
+.center {
   display: flex;
-  flex-direction: column;
-  margin-top: 2em;
-  background-color: rgb(231, 166, 210);
+  justify-content: center;
+  margin-top: auto;
+}
+
+.container {
+  flex: 0 1 30em;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  background-color: #fff;
+  box-shadow: 0 1em 1.5em rgba(0, 0, 0, 0.05);
 }
 
 /* ========== */
@@ -52,10 +75,12 @@ label, input[type="checkbox"], input[type="radio"] {
 
 .title {
   text-align: center;
+  color: #111;
 }
 
 .title h1 {
   font-size: 2.5em;
+  font-family: 'Permanent Marker', cursive;
 }
 
 /* ============= */
@@ -68,6 +93,16 @@ label, input[type="checkbox"], input[type="radio"] {
 
 .input > input {
   flex: 1 1 auto;
+  margin-right: 0.5em;
+  padding: 0.25em;
+}
+
+.btn-new {
+  background-image: url('img/add.png');
+}
+
+.btn-new:hover {
+  opacity: 0.75;
 }
 
 /* ================= */
@@ -76,14 +111,16 @@ label, input[type="checkbox"], input[type="radio"] {
 
 .filters {
   display: flex;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   padding: 0.5em 1em;
   margin-top: 1em;
   /* background-color: gray; */
 }
 
 .filters > * {
-  margin-right: 1em;
+  margin-right: 0.6em;
   cursor: pointer;
 }
 
@@ -108,11 +145,11 @@ label, input[type="checkbox"], input[type="radio"] {
   align-items: center;
   margin: 0.25em 0;
   padding: 0.25em 0;
-  background-color: rgb(163, 153, 245);
+  /* background-color: rgb(163, 153, 245); */
 }
 
-.listing input[type="text"] {
-  flex-grow: 1;
+.listing input[type="checkbox"] {
+  margin-right: 0.5em;
 }
 
 .info {
@@ -121,9 +158,21 @@ label, input[type="checkbox"], input[type="radio"] {
   flex-direction: column;
 }
 
-.btn-edit-task {
-  margin-left: auto;
+.listing input[type="text"] {
+  /* margin-right: 0.5em; */
+  flex-grow: 1;
 }
+
+.listing button {
+  flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-left: 0.35em;
+}
+
+.btn-info { background-image: url('img/info.png'); }
+.btn-edit { background-image: url('img/pencil.png'); }
+.btn-del { background-image: url('img/trash.png'); }
 
 .listing time {
   font-size: 0.75em;

@@ -7,7 +7,19 @@ const taskList = document.querySelector('.listing ul');
 const newTaskInput = document.getElementById('inp-new');
 newTaskInput.addEventListener('keyup', event => {
   if (event.key === 'Enter') {
-    newTask(event.target.value);
+    newTaskHandler(event);
+  }
+});
+
+const newTaskBtn = document.querySelector('.btn-new');
+newTaskBtn.addEventListener('click', newTaskHandler);
+
+function newTaskHandler(event) {
+  let name = event.target.value;
+  console.log('Name:', name);
+
+  if (name.trim()) {
+    newTask(name);
     event.target.value = '';
 
     if (getCurrentFilter() === 'complete') {
@@ -15,10 +27,7 @@ newTaskInput.addEventListener('keyup', event => {
       refreshFiltering();
     } 
   }
-});
-
-const newTaskBtn = document.querySelector('.btn-new');
-newTaskBtn.addEventListener('click', () => newTask(newTaskInput.value));
+}
 
 const filterRadios = document.querySelectorAll('.filters input[type="radio"]');
 filterRadios.forEach(radio => {
@@ -54,9 +63,9 @@ function insertTask(id, name, datetime, complete) {
         <time datetime="${datetime}" class="hidden">Created on ${date} at ${time}</time>
       </div>
       <input type="text" name="inp-task-${id}" value="${name}" class="hidden">
-      <button type="button" class="btn-info">I</button>
-      <button type="button" class="btn-edit">E</button>
-      <button type="button" class="btn-del">D</button>
+      <button type="button" class="btn-info" title="View creation date"></button>
+      <button type="button" class="btn-edit" title="Edit task"></button>
+      <button type="button" class="btn-del" title="Delete task"></button>
   `;
 
   task.querySelector('input[type="checkbox"]').addEventListener('change', (event) => {

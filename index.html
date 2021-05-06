@@ -13,36 +13,35 @@
 
 <body>
 
-  <div class="wrapper">
-    <header class="title">
-      <h1>To-Do App</h1>
-    </header>
-    <main>
-      <section class="input">
-        <input type="text" name="inp-new" id="inp-new">
-        <button type="button" class="btn-new">+</button>
-      </section>
-      <section class="filters">
-        <div>
-          Filters:
+  <div class="center">
+    <div class="container">
+      <header class="title">
+        <h1>To-Do App</h1>
+      </header>
+      <main>
+        <div class="input">
+          <input type="text" name="inp-new" id="inp-new">
+          <button type="button" class="btn-new"></button>
         </div>
-        <div>
-          <input type="radio" name="filter" id="filter-all" value="all" checked>
-          <label for="filter-all">All</label>
+        <div class="filters">
+          <div>
+            <input type="radio" name="filter" id="filter-all" value="all" checked>
+            <label for="filter-all">All</label>
+          </div>
+          <div>
+            <input type="radio" name="filter" id="filter-complete" value="complete">
+            <label for="filter-complete">Complete</label>
+          </div>
+          <div>
+            <input type="radio" name="filter" id="filter-active" value="active">
+            <label for="filter-active">Active</label>
+          </div>
         </div>
-        <div>
-          <input type="radio" name="filter" id="filter-complete" value="complete">
-          <label for="filter-complete">Complete</label>
+        <div class="listing">
+          <ul></ul>
         </div>
-        <div>
-          <input type="radio" name="filter" id="filter-active" value="active">
-          <label for="filter-active">Active</label>
-        </div>
-      </section>
-      <section class="listing">
-        <ul></ul>
-      </section>
-    </main>
+      </main>
+    </div>
   </div>
   <footer>
     &copy; Thiago Souza 2021.
