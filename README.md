@@ -2,6 +2,9 @@
 
 The classic To-Do application where a user can write down all the things he wants to accomplish.
 
+See it live here:
+[https://thiagorasouza.github.io/to-do-app/](https://thiagorasouza.github.io/to-do-app/)
+
 ## User Stories
 
 -   [x] User can see an `input` field where he can type in a to-do item
